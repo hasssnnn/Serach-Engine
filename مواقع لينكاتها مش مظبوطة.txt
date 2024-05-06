@@ -1,0 +1,21 @@
+sky news
+i used this formula to name the files (to name the file with its url for each )
+
+def format_filename(url):
+    # Remove the protocol (http/https) and replace special characters with _
+    formatted_url = url.replace('://', '_').replace('/', '__').replace('.', '___').replace(':','____').replace('_','_____').replace('&','______').replace('%','_______').replace('?','________').replace('(','_________').replace(')','__________').replace('=','___________')
+    return formatted_url + '.txt'
+
+and i want the output of this code be the original urls (while clicking it works)
+
+# formatted_url = url.replace('://', '_').replace('/', '__').replace('.', '___').replace(':','____')
+# #return formatted_url + '.txt'
+def filename_to_url(filename):
+    parts = filename.split('__')
+    if len(parts) >= 3:  # Ensure we have enough elements
+        domain = parts[1].replace('___', '.')  # Extract the domain and replace underscores with dots
+        path = parts[2].replace('__', '/')  # Extract the path and replace underscores with slashes
+        return f'https://{domain}/{path}'
+    else:
+        print(f"Invalid filename format: {filename}")
+        return None
